@@ -1,33 +1,31 @@
 package com.media.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.media.server.enums.Genre;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Table(name="song")
 public class Song {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "uuid", columnDefinition = "VARCHAR(255)", updatable = false, nullable = false)
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
     private String title;
     @ManyToOne
-    @JoinColumn(name = "artist.uuid", nullable = false)
+    @JoinColumn(name = "artist.id", nullable = false)
+    @JsonIgnore
     private Artist artist;
     @ManyToOne
-    @JoinColumn(name = "publisher.uuid", nullable = false)
+    @JoinColumn(name = "publisher.id", nullable = false)
+    @JsonIgnore
     private Publisher publisher;
     @Column(name = "originating_country")
     private String originatingCountry;
-    private Genre genre;
+//    private Genre genre;
 
     @Column(name = "publishing_date")
     private LocalDate publishingDate;
@@ -39,6 +37,73 @@ public class Song {
     public Song(String title, String country, Genre genre) {
         this.title = title;
         this.originatingCountry = country;
-        this.genre = genre;
+//        this.genre = genre;
+    }
+
+    public Song() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getOriginatingCountry() {
+        return originatingCountry;
+    }
+
+    public void setOriginatingCountry(String originatingCountry) {
+        this.originatingCountry = originatingCountry;
+    }
+
+    public LocalDate getPublishingDate() {
+        return publishingDate;
+    }
+
+    public void setPublishingDate(LocalDate publishingDate) {
+        this.publishingDate = publishingDate;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }

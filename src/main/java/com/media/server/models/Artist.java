@@ -5,18 +5,13 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class Artist {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "uuid", columnDefinition = "VARCHAR(255)", updatable = false, nullable = false)
-    private UUID uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
     private String name;
     @Column(name = "created_at")
     private LocalDate createdAt;
@@ -24,4 +19,20 @@ public class Artist {
     private LocalDate updatedAt;
     @OneToMany(mappedBy = "artist")
     private Set<Song> songs;
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

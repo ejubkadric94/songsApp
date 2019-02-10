@@ -1,10 +1,7 @@
 package com.media.server.repositories;
 
 import com.media.server.models.Song;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
-
-public interface SongRepository extends CrudRepository<Song, UUID> {
-
+public interface SongRepository extends JpaRepository<Song, Long> {
 }
