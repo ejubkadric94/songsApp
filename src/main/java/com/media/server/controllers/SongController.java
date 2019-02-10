@@ -2,6 +2,7 @@ package com.media.server.controllers;
 
 import com.media.server.helpers.MessageWrapper;
 import com.media.server.helpers.Resources;
+import com.media.server.helpers.SongSearchModel;
 import com.media.server.helpers.Validations;
 import com.media.server.models.Artist;
 import com.media.server.models.Publisher;
@@ -10,10 +11,12 @@ import com.media.server.repositories.ArtistRepository;
 import com.media.server.repositories.PublisherRepository;
 import com.media.server.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -77,5 +80,26 @@ public class SongController {
 
         songRepository.delete(song.get());
         return ResponseEntity.status(HttpStatus.OK).body(new MessageWrapper(Resources.SUCCESS));
+    }
+
+    @RequestMapping(value = "/song/search", method = RequestMethod.POST)
+    public ResponseEntity searchSongs(@RequestBody SongSearchModel songSearchModel) {
+        Song song = new Song();
+        song.setGenre(songSearchModel.getGenre());
+        song.setOriginatingCountry(songSearchModel.getCountry());
+        song.setTitle(songSearchModel.getSongTitle());
+
+        Optional<Publisher> publisher = publisherRepository.findByName(songSearchModel.getPublisherName());
+        if (publisher.isPresent()) {
+            song.setPublisher(publisher.get());
+        }
+        Optional<Artist> artist = artistRepository.findByName(songSearchModel.getArtistName());
+        if (artist.isPresent()) {
+            song.setArtist(artist.get());
+        }
+
+        Example<Song> songExample = Example.of(song);
+        List<Song> songs = songRepository.findAll(songExample);
+        return ResponseEntity.status(HttpStatus.OK).body(songs);
     }
 }

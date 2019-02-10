@@ -102,10 +102,13 @@ public class Song {
     }
 
     public String getGenre() {
-        return this.genre.getValue();
+        if (this.genre != null) {
+            return this.genre.getValue();
+        }
+        return null;
     }
 
-//    public void setGenre(int genre) {
-//        this.genre = genre;
-//    }
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 }
