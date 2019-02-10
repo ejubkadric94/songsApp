@@ -78,9 +78,4 @@ public class SongController {
         songRepository.delete(song.get());
         return ResponseEntity.status(HttpStatus.OK).body(new MessageWrapper(Resources.SUCCESS));
     }
-
-    @RequestMapping(value = "/song")
-    public ResponseEntity findSongs() {
-        
-    }
 }

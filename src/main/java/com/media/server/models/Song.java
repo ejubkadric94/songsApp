@@ -1,7 +1,6 @@
 package com.media.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.media.server.enums.Genre;
 
 import javax.persistence.*;
@@ -25,20 +24,15 @@ public class Song {
     private Publisher publisher;
     @Column(name = "originating_country")
     private String originatingCountry;
-//    private Genre genre;
-
+    @Column(columnDefinition = "VARCHAR(100)")
+    @Enumerated(value = EnumType.STRING)
+    private Genre genre;
     @Column(name = "publishing_date")
     private LocalDate publishingDate;
     @Column(name = "created_at")
     private LocalDate createdAt;
     @Column(name = "updated_at")
     private LocalDate updatedAt;
-
-    public Song(String title, String country, Genre genre) {
-        this.title = title;
-        this.originatingCountry = country;
-//        this.genre = genre;
-    }
 
     public Song() {
     }
@@ -106,4 +100,12 @@ public class Song {
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
+
+    public String getGenre() {
+        return this.genre.getValue();
+    }
+
+//    public void setGenre(int genre) {
+//        this.genre = genre;
+//    }
 }
