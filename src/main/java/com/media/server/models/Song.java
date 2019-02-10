@@ -1,7 +1,6 @@
 package com.media.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.media.server.enums.Genre;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,8 +23,8 @@ public class Song {
     private Publisher publisher;
     @Column(name = "originating_country")
     private String originatingCountry;
-    @Column(columnDefinition = "VARCHAR(100)")
-    @Enumerated(value = EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "genre.id", nullable = false)
     private Genre genre;
     @Column(name = "publishing_date")
     private LocalDate publishingDate;
@@ -101,11 +100,8 @@ public class Song {
         this.publisher = publisher;
     }
 
-    public String getGenre() {
-        if (this.genre != null) {
-            return this.genre.getValue();
-        }
-        return null;
+    public Genre getGenre() {
+        return this.genre;
     }
 
     public void setGenre(Genre genre) {

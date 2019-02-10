@@ -1,9 +1,9 @@
 package com.media.server.helpers;
 
-import com.media.server.enums.Genre;
+import com.media.server.models.Genre;
 
 public class SongSearchModel {
-    private Genre genre;
+    private String genreName;
     private String country;
     private String artistName;
     private String publisherName;
@@ -12,8 +12,8 @@ public class SongSearchModel {
     public SongSearchModel() {
     }
 
-    public Genre getGenre() {
-        return genre;
+    public String getGenreName() {
+        return genreName;
     }
 
     public String getCountry() {

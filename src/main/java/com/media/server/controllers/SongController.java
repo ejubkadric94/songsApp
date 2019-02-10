@@ -5,17 +5,25 @@ import com.media.server.helpers.Resources;
 import com.media.server.helpers.SongSearchModel;
 import com.media.server.helpers.Validations;
 import com.media.server.models.Artist;
+import com.media.server.models.Genre;
 import com.media.server.models.Publisher;
 import com.media.server.models.Song;
 import com.media.server.repositories.ArtistRepository;
+import com.media.server.repositories.GenreRepository;
 import com.media.server.repositories.PublisherRepository;
 import com.media.server.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +35,8 @@ public class SongController {
     private ArtistRepository artistRepository;
     @Autowired
     private PublisherRepository publisherRepository;
+    @Autowired
+    private GenreRepository genreRepository;
 
     @RequestMapping("/song/{id}")
     public ResponseEntity getSong(@PathVariable Long id) {
@@ -85,9 +95,12 @@ public class SongController {
     @RequestMapping(value = "/song/search", method = RequestMethod.POST)
     public ResponseEntity searchSongs(@RequestBody SongSearchModel songSearchModel) {
         Song song = new Song();
-        song.setGenre(songSearchModel.getGenre());
-        song.setOriginatingCountry(songSearchModel.getCountry());
-        song.setTitle(songSearchModel.getSongTitle());
+        if (songSearchModel.getCountry() != null && !songSearchModel.getCountry().isEmpty()) {
+            song.setOriginatingCountry(songSearchModel.getCountry());
+        }
+        if (songSearchModel.getSongTitle() != null && !songSearchModel.getSongTitle().isEmpty()) {
+            song.setTitle(songSearchModel.getSongTitle());
+        }
 
         Optional<Publisher> publisher = publisherRepository.findByName(songSearchModel.getPublisherName());
         if (publisher.isPresent()) {
@@ -97,9 +110,13 @@ public class SongController {
         if (artist.isPresent()) {
             song.setArtist(artist.get());
         }
+        Optional<Genre> genre = genreRepository.findByName(songSearchModel.getGenreName());
+        if (genre.isPresent()) {
+            song.setGenre(genre.get());
+        }
 
-        Example<Song> songExample = Example.of(song);
-        List<Song> songs = songRepository.findAll(songExample);
+        Example<Song> example = Example.of(song);
+        List<Song> songs = songRepository.findAll(example);
         return ResponseEntity.status(HttpStatus.OK).body(songs);
     }
 }
