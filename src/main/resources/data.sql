@@ -1,39 +1,30 @@
-INSERT INTO APP_USER (id, email, password, first_name, last_name)
-VALUES (0, 'ejubkadric@gmail.com', 'letmein', 'Ejub', 'Kadric');
+INSERT INTO APP_USER (id, email, password, first_name, last_name, created_at, modified_at)
+VALUES (0, 'ejubkadric@gmail.com', 'letmein', 'Ejub', 'Kadric', NOW(), NOW());
 
-INSERT INTO PUBLISHER (id, name)
-VALUES (0, 'DM Production');
-INSERT INTO PUBLISHER (id, name)
-VALUES (1, 'Kobalt');
+INSERT INTO PUBLISHER (id, name, created_at, modified_at)
+VALUES (0, 'DM Production', NOW(), NOW());
+INSERT INTO PUBLISHER (id, name, created_at, modified_at)
+VALUES (1, 'Kobalt', NOW(), NOW());
 
-INSERT INTO ARTIST (id, name)
-VALUES (0, 'Akon');
-INSERT INTO ARTIST (id, name)
-VALUES (1, 'Basshunter');
-INSERT INTO ARTIST (id, name)
-VALUES (2, 'Dizzy Gillespie');
-INSERT INTO ARTIST (id, name)
-VALUES (3, 'Alice Cooper');
+INSERT INTO ARTIST (id, name, created_at, modified_at)
+VALUES (0, 'Akon', NOW(), NOW());
+INSERT INTO ARTIST (id, name, created_at, modified_at)
+VALUES (1, 'Basshunter', NOW(), NOW());
+INSERT INTO ARTIST (id, name, created_at, modified_at)
+VALUES (2, 'Dizzy Gillespie', NOW(), NOW());
+INSERT INTO ARTIST (id, name, created_at, modified_at)
+VALUES (3, 'Alice Cooper', NOW(), NOW());
 
-INSERT INTO GENRE (id, name)
-VALUES (0, 'Pop');
-INSERT INTO GENRE (id, name)
-VALUES (1, 'Euro Dance');
-INSERT INTO GENRE (id, name)
-VALUES (2, 'Rock');
-INSERT INTO GENRE (id, name)
-VALUES (3, 'Jazz');
-
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (0, 'Beautiful', 'USA', 0, 0, 0);
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (1, 'Dota', 'Sweden', 0, 1, 1);
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (2, 'Poison', 'USA', 1, 3, 2);
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (3, 'A night in Tunisia', 'USA', 1, 2, 3);
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (4, 'Now you are gone', 'Sweden', 1, 1, 1);
-INSERT INTO SONG (id, title, originating_country, publisher_id, artist_id, genre_id)
-VALUES (5, 'Smack that', 'USA', 0, 0, 0);
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (0, 'Beautiful', 'POP','USA', 0, 0, NOW(), NOW());
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (1, 'Dota', 'EURO_DANCE','Sweden', 0, 1, NOW(), NOW());
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (2, 'Poison', 'ROCK','USA', 1, 3, NOW(), NOW());
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (3, 'A night in Tunisia', 'JAZZ','USA', 1, 2, NOW(), NOW());
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (4, 'Now you are gone', 'EURO_DANCE','Sweden', 1, 1, NOW(), NOW());
+INSERT INTO SONG (id, title, originating_country, genre, publisher_id, artist_id, created_at, modified_at)
+VALUES (5, 'Smack that', 'POP','USA', 0, 0, NOW(), NOW());
 

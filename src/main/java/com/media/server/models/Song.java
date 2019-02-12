@@ -1,13 +1,14 @@
 package com.media.server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="song")
-public class Song {
+public class Song extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
@@ -23,15 +24,10 @@ public class Song {
     private Publisher publisher;
     @Column(name = "originating_country")
     private String originatingCountry;
-    @ManyToOne
-    @JoinColumn(name = "genre.id", nullable = false)
-    private Genre genre;
+    @Column(nullable = false)
+    private String genre;
     @Column(name = "publishing_date")
     private LocalDate publishingDate;
-    @Column(name = "created_at")
-    private LocalDate createdAt;
-    @Column(name = "updated_at")
-    private LocalDate updatedAt;
 
     public Song() {
     }
@@ -60,22 +56,6 @@ public class Song {
         this.publishingDate = publishingDate;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDate updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public Long getId() {
         return id;
     }
@@ -100,11 +80,11 @@ public class Song {
         this.publisher = publisher;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return this.genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 }

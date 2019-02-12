@@ -1,9 +1,7 @@
 package com.media.server.helpers;
 
-import com.media.server.models.Genre;
-
 public class SongSearchModel {
-    private String genreName;
+    private String genre;
     private String country;
     private String artistName;
     private String publisherName;
@@ -12,8 +10,8 @@ public class SongSearchModel {
     public SongSearchModel() {
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getGenre() {
+        return genre;
     }
 
     public String getCountry() {
