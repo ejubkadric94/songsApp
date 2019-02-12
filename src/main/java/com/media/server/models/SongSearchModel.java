@@ -1,4 +1,4 @@
-package com.media.server.helpers;
+package com.media.server.models;
 
 public class SongSearchModel {
     private String genre;

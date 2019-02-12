@@ -2,7 +2,7 @@ package com.media.server.controllers;
 
 import com.media.server.helpers.MessageWrapper;
 import com.media.server.helpers.Resources;
-import com.media.server.helpers.SongSearchModel;
+import com.media.server.models.SongSearchModel;
 import com.media.server.helpers.Validations;
 import com.media.server.models.Artist;
 import com.media.server.models.Publisher;
