@@ -1,4 +1,4 @@
-package com.media.server.controllers;
+package com.media.server.controllers.resources;
 
 import com.media.server.helpers.MessageWrapper;
 import com.media.server.helpers.Resources;

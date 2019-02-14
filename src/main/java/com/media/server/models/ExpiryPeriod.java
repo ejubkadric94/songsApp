@@ -22,4 +22,8 @@ public class ExpiryPeriod extends Auditable {
         this.songId = songId;
         this.expiry = expiry;
     }
+
+    public Date getExpiry() {
+        return expiry;
+    }
 }

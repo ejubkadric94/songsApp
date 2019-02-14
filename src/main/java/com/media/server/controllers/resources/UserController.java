@@ -1,4 +1,4 @@
-package com.media.server.controllers;
+package com.media.server.controllers.resources;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

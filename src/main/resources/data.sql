@@ -1,5 +1,5 @@
 INSERT INTO APP_USER (id, email, password, first_name, last_name, created_at, modified_at)
-VALUES (0, 'ejubkadric@gmail.com', 'letmein', 'Ejub', 'Kadric', NOW(), NOW());
+VALUES (0, 'admin@songsapp.com', 'letmein', 'Ejub', 'Kadric', NOW(), NOW());
 
 INSERT INTO PUBLISHER (id, name, created_at, modified_at)
 VALUES (0, 'DM Production', NOW(), NOW());

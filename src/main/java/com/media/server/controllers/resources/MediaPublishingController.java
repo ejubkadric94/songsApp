@@ -1,8 +1,6 @@
-package com.media.server.controllers;
+package com.media.server.controllers.resources;
 
-import com.media.server.helpers.MediaPublishingHelper;
-import com.media.server.helpers.MessageWrapper;
-import com.media.server.helpers.Resources;
+import com.media.server.helpers.*;
 import com.media.server.models.SongAssignModel;
 import com.media.server.models.ExpiryPeriod;
 import com.media.server.repositories.ExpiryPeriodRepository;
@@ -34,7 +32,7 @@ public class MediaPublishingController {
 
     @RequestMapping("/publishing/expired")
     public ResponseEntity getExpiredConnections() {
-//        expiryPeriodRepository.find
-        return ResponseEntity.status(HttpStatus.OK).body(new MessageWrapper(Resources.SUCCESS));
+        List<ExpiryPeriod> expiryPeriods = expiryPeriodRepository.findAll(ExpirySpecification.customerHasBirthday());
+        return ResponseEntity.status(HttpStatus.OK).body(expiryPeriods);
     }
 }
