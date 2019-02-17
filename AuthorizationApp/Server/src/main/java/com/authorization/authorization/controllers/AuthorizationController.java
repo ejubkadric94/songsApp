@@ -17,8 +17,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
-@RestController(value = "/authorization")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController
+@RequestMapping("/authorization")
 public class AuthorizationController {
     @Autowired
     private UserRepository userRepository;

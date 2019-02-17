@@ -21,7 +21,8 @@ import java.util.List;
  * along with every request. To obtain an access token, please refer to UserController.
  *
  */
-@RestController(value = "/publishing")
+@RestController
+@RequestMapping("/publishing")
 public class MediaPublishingController {
     @Autowired
     private ExpiryPeriodRepository expiryPeriodRepository;

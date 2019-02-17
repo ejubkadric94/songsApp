@@ -38,7 +38,7 @@ class App extends Component {
         })
     }).then(response => {
       if (response.status === 200) {
-        response.json().then(body => window.location.href = document.referrer + '/home/' + body.accessToken.token + '/' + body.bearerToken.token);
+        response.json().then(body => window.location.href = document.referrer + 'home/' + body.accessToken.token + '/' + body.bearerToken.token);
       }
     });
   }

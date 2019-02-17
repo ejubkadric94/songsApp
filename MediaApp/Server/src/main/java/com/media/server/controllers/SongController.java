@@ -25,7 +25,8 @@ import java.util.Optional;
  * To use any of its endpoint, user has to provide a request header "Access-Token" with valid and non expired value,
  * along with every request. To obtain an access token, please refer to UserController.
  */
-@RestController(value = "/song")
+@RestController
+@RequestMapping("/song")
 @EnableAutoConfiguration
 public class SongController {
 

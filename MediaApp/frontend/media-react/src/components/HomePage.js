@@ -31,11 +31,18 @@ class HomePage extends Component {
   }
 
   render() {
-    return this.state.loading ? this.getLoadingText() : (
-      <h2>
-        Welcome: <em>{this.state.firstName}</em>
-      </h2>
-    );
+    return (<>
+      <center>
+        <h2>
+          Welcome
+        </h2>
+        Your access token: <em>{this.props.match.params.accessToken}</em> <br></br>
+        Your bearer (refresh) token: <em>{this.props.match.params.bearerToken}</em> <br></br><br></br><br></br>
+
+        <b>Note:</b>
+        <span>Both tokens should be safely secured!</span>
+      </center>
+    </>);
   }
 }
 
