@@ -2,7 +2,7 @@
 
 Songs application is an example app which contains a REST service (created with Spring Boot 2) for storing songs. It contains a separate Authorization server which serves as OAuth2 Auth server. Both servers (resources server and auth server) use the embedded H2 database.
 
-Both `songsApp/AuthorizationApp` and `songsApp/MediaApp` contain a frontend folder. Both of these include a basic ReactJS apps whose point is to demonstrate how OAuth2 login works.
+Both `songsApp/AuthorizationApp` and `songsApp/MediaApp` contain a frontend folder. Both of these include basic ReactJS apps whose point is to demonstrate how OAuth2 login works.
 
 ## Installation
 
