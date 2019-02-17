@@ -1,6 +1,7 @@
 package com.media.server.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.media.server.models.helperModels.UserPOJO;
 
 import javax.persistence.*;
 import java.util.Date;

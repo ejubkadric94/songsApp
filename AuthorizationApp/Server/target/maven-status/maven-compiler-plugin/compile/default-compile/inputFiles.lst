@@ -1,0 +1,8 @@
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/specifications/UserSpecification.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/controllers/AuthorizationController.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/models/BearerToken.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/models/User.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/repositories/UserRepository.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/AuthorizationApplication.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/models/AccessToken.java
+/home/ejub/Projects/SongsApp/AuthorizationApp/Server/src/main/java/com/authorization/authorization/repositories/BearerTokenRepository.java

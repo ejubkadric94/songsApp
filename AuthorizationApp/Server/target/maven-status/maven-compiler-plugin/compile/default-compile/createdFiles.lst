@@ -1,0 +1,8 @@
+com/authorization/authorization/repositories/BearerTokenRepository.class
+com/authorization/authorization/AuthorizationApplication.class
+com/authorization/authorization/models/User.class
+com/authorization/authorization/models/BearerToken.class
+com/authorization/authorization/repositories/UserRepository.class
+com/authorization/authorization/models/AccessToken.class
+com/authorization/authorization/controllers/AuthorizationController.class
+com/authorization/authorization/specifications/UserSpecification.class

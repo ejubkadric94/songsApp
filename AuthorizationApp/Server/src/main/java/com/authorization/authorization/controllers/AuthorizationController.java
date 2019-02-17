@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-@RestController
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController(value = "/authorization")
 public class AuthorizationController {
     @Autowired
     private UserRepository userRepository;
@@ -32,7 +32,8 @@ public class AuthorizationController {
      * @param requestBodyUser
      * @return
      */
-    @RequestMapping(value = "/authorization/authenticate", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3001")
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity authenticate(@RequestBody User requestBodyUser) {
         Optional<User> existingUser = userRepository.findByEmailAndPassword(requestBodyUser.getEmail(), requestBodyUser.getPassword());
         if (!existingUser.isPresent()) {
@@ -71,7 +72,13 @@ public class AuthorizationController {
         }
     }
 
-    @RequestMapping(value = "/authorization/revokeBearerToken", method = RequestMethod.POST)
+    /**
+     * Revoke bearer token in case of emergency.
+     *
+     * @param requestBodyUser JSON object which contains email and password
+     * @return 400 in case of non existant user, or in case of invalid credentials
+     */
+    @RequestMapping(value = "/revokeBearerToken", method = RequestMethod.POST)
     public ResponseEntity revokeBearerToken(@RequestBody User requestBodyUser) {
         Optional<User> existingUser = userRepository.findByEmailAndPassword(requestBodyUser.getEmail(), requestBodyUser.getPassword());
         if (!existingUser.isPresent()) {
@@ -87,7 +94,13 @@ public class AuthorizationController {
         return ResponseEntity.status(HttpStatus.OK).body("Bearer token revoked. Please authenticate again.");
     }
 
-    @RequestMapping(value = "/authorization/refreshAccessToken", method = RequestMethod.POST)
+    /**
+     * Refresh access token after it expires.
+     *
+     * @param bearerToken Bearer token JSON serialized object
+     * @return newly created access token which lasts for next 5 minutes
+     */
+    @RequestMapping(value = "/refreshAccessToken", method = RequestMethod.POST)
     public ResponseEntity refreshAccessToken(@RequestBody BearerToken bearerToken) {
         BearerToken existingToken = bearerTokenRepository.findByToken(bearerToken.getToken());
 
