@@ -43,6 +43,7 @@ yarn start
 
 ## Usage
 Open `http://localhost:3000`. To login, you can use credentials `admin@songsapp.com:letmein`. Afterwards, use Postman to check out endpoints on resource (MediaApp) server.
+Make sure to include `Access-Token` header with each request to resources server.
 
 
 ## License
