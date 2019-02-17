@@ -10,16 +10,12 @@ import com.media.server.models.Song;
 import com.media.server.repositories.ArtistRepository;
 import com.media.server.repositories.PublisherRepository;
 import com.media.server.repositories.SongRepository;
-import com.media.server.repositories.UserRepository;
-import com.media.server.security.RequestsHandlerInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.handler.MappedInterceptor;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,14 +30,6 @@ public class SongController {
     private ArtistRepository artistRepository;
     @Autowired
     private PublisherRepository publisherRepository;
-    @Autowired
-    private UserRepository userRepository;
-
-    @Bean
-    @Autowired
-    public MappedInterceptor getMappedInterceptor(RequestsHandlerInterceptor myHandlerInterceptor) {
-        return new MappedInterceptor(new String[] { "/" }, myHandlerInterceptor);
-    }
 
     @RequestMapping("/song/{id}")
     public ResponseEntity getSong(@PathVariable Long id) {
