@@ -11,7 +11,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={LoginPage} />
-          <Route path="/home/:accessToken" component={HomePage} />
+          <Route path="/home/:accessToken/:bearerToken" component={HomePage} />
         </div>
       </Router>
     );    
